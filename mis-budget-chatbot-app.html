@@ -1015,6 +1015,31 @@ const QUESTION_CATEGORIES = {
    ========================================================= */
 const DIRECT_FAQS = [
   {
+    triggers: ["ทดสอบ", "test", "testing", "เทส", "เช็คระบบ"],
+    answer: "ระบบผู้ช่วยคำของบประมาณทำงานได้ตามปกติพร้อมให้บริการครับ! ✅\n\n💡 ท่านสามารถพิมพ์สอบถามวิธีการใช้งานระบบคำของบประมาณ (MIS Budget) หรือคลิกเลือกหัวข้อที่สนใจจากเมนูทางด้านซ้ายได้เลยครับ",
+    sources: [],
+    illustrationPage: null
+  },
+  {
+    triggers: ["สวัสดี", "หวัดดี", "ฮัลโหล", "hello", "hi", "ดีครับ", "ดีค่ะ"],
+    answer: "สวัสดีครับ 👋 ยินดีต้อนรับสู่ระบบผู้ช่วยคำของบประมาณ มหาวิทยาลัยราชภัฏเลย ครับ\n\nมีข้อสงสัยขั้นตอนไหน เช่น การบันทึกคำขอ, การตรวจสอบสถานะ, หรือการเรียกรายงาน สามารถพิมพ์ถามได้ทันทีครับ",
+    sources: [],
+    illustrationPage: null
+  },
+  {
+    triggers: ["ขอบคุณ", "ขอบใจ", "thanks", "thank you", "แต๊งกิ้ว"],
+    answer: "ยินดีให้บริการเป็นอย่างยิ่งครับ! 😊 หากมีข้อสงสัยหรือติดปัญหาการใช้งานระบบคำของบประมาณเพิ่มเติม สอบถามได้ตลอดเวลาเลยนะครับ",
+    sources: [],
+    illustrationPage: null
+  },
+  {
+    triggers: ["ช่วยอะไรได้บ้าง", "ทำอะไรได้บ้าง", "คู่มืออะไร", "เกี่ยวกับอะไร"],
+    answer: "ผมสามารถช่วยแนะนำ **วิธีการใช้งานระบบคำของบประมาณ (MIS Budget)** ของมหาวิทยาลัยราชภัฏเลย ตามคู่มือฉบับทางการ 120 หน้าครับ ได้แก่:\n\n1. **ระดับหน่วยงาน/คณะ:** ขั้นตอนการบันทึกคำขอโครงการงบประมาณประจำปี, การเลือกยุทธศาสตร์/ตัวชี้วัด, การแนบไฟล์, การแก้ไขโครงการที่ถูกส่งกลับ\n2. **การติดตามสถานะ:** ความหมายของสถานะทั้ง 6 ขั้นตอน และการเรียกดูรายงานสรุป\n3. **ระดับผู้บริหาร/กองนโยบาย:** การพิจารณาเห็นชอบ, การอนุมัติคำขอ, และการบริหารจัดการระบบ\n\n*(พร้อมเปิดดูภาพหน้าจอจริงจากคู่มือและขยายเต็มจอได้ครับ)*",
+    sources: [1, 2],
+    illustrationPage: 1
+  },
+
+  {
     id: "add_button_missing",
     triggers: ["ปุ่มเพิ่มหาย", "ปุ่มเพิ่ม", "กดเพิ่มไม่ได้", "หาปุ่มเพิ่มไม่เจอ", "ปุ่ม เพิ่ม", "ไม่เห็นปุ่มเพิ่ม"],
     question: "ทำไมปุ่ม 'เพิ่ม' คำขอโครงการหายไป หรือกดไม่ได้",
@@ -1311,13 +1336,14 @@ const DIRECT_FAQS = [
 
 // คำถามนอกขอบเขตระบบคำของบประมาณ
 const OUT_OF_SCOPE_TERMS = [
-  "สภาพอากาศ", "พยากรณ์อากาศ", "อุณหภูมิ", "ฝนตก", "แดดออก",
-  "สูตรอาหาร", "ทำอาหาร", "ต้มยำ", "ข้าวมันไก่", "แกงเขียวหวาน",
+  "สภาพอากาศ", "พยากรณ์อากาศ", "อุณหภูมิ", "ฝนตก", "ฝน", "แดดออก", "อากาศ",
+  "สูตรอาหาร", "ทำอาหาร", "ต้มยำ", "ข้าวมันไก่", "แกงเขียวหวาน", "กินข้าว", "อาหาร", "กินอะไร", "กาแฟ",
   "ดูดวง", "ราศี", "เลขเด็ด", "หวย", "สลากกินแบ่ง",
-  "แทงบอล", "ฟุตบอล", "พรีเมียร์ลีก", "ดูหนัง", "ฟังเพลง",
-  "หุ้น", "คริปโต", "บิตคอยน์", "ท่องเที่ยว", "โรงแรม",
+  "แทงบอล", "ฟุตบอล", "พรีเมียร์ลีก", "ดูหนัง", "ฟังเพลง", "เล่นเกม", "เกม",
+  "หุ้น", "คริปโต", "บิตคอยน์", "ท่องเที่ยว", "โรงแรม", "เที่ยว",
   "เบิกค่ารักษา", "ค่ารักษาพยาบาล", "เงินเดือน", "สลิปเงินเดือน", "ภาษี",
-  "ลดหย่อนภาษี", "ยืมเงินทดลอง", "ลางาน", "วันลา", "ประกันสังคม"
+  "ลดหย่อนภาษี", "ยืมเงินทดลอง", "ยืมเงิน", "ลางาน", "วันลา", "ประกันสังคม",
+  "ลงทะเบียน", "เกรด", "ตารางเรียน", "ตารางสอน", "ค่าเทอม", "กยศ", "หอพัก", "สมัครเรียน"
 ];
 
 // คำสำคัญที่เกี่ยวกับระบบคำของบประมาณ
@@ -1327,6 +1353,20 @@ const IN_SCOPE_TERMS = [
   "รายงาน", "ตีกลับ", "ส่งคืน", "แก้ไข", "อนุมัติ", "บันทึก", "สถานะ", "แหล่งเงิน",
   "ประเภทโครงการ", "ส่งข้อมูล", "ผลดำเนินงาน", "mis", "ปุ่มเพิ่ม", "แนบไฟล์"
 ];
+
+
+/* =========================================================
+   IMAGE CDN HELPER & GITHUB RAW FALLBACK
+   ========================================================= */
+const GITHUB_RAW_IMG_BASE = "https://raw.githubusercontent.com/plan2019lru-lab/chatbotmis/main/manual_images/";
+
+function getManualImgUrl(pNum) {
+  if (!pNum) return "";
+  if (typeof window !== "undefined" && window.location && (window.location.hostname.includes("google") || window.location.hostname.includes("script.googleusercontent"))) {
+    return `${GITHUB_RAW_IMG_BASE}page_${pNum}.webp`;
+  }
+  return `manual_images/page_${pNum}.webp`;
+}
 
 /* =========================================================
    APPLICATION STATE
@@ -1680,10 +1720,14 @@ function cleanQueryIntent(q){
   return res.trim();
 }
 
-function bigrams(str){
+function ngrams(str, n=3){
   const s = normalizeThai(str).replace(/\s+/g, "");
   const set = new Set();
-  for(let i = 0; i < s.length - 1; i++) set.add(s.slice(i, i + 2));
+  if(s.length < n){
+    if(s.length >= 2) set.add(s);
+    return set;
+  }
+  for(let i = 0; i <= s.length - n; i++) set.add(s.slice(i, i + n));
   return set;
 }
 
@@ -1695,12 +1739,16 @@ function isQueryOutOfScope(query){
   return false;
 }
 
-function scorePage(query, queryBigrams, pageText){
+function scorePage(query, queryNgrams, pageText){
   const normText = normalizeThai(pageText);
-  const tb = bigrams(normText);
+  const cleanQ = cleanQueryIntent(query);
+  if(cleanQ.length >= 3 && cleanQ.length <= 8 && !normText.includes(cleanQ)){
+    return 0;
+  }
+  const tn = ngrams(normText, 3);
   let common = 0;
-  queryBigrams.forEach(g => { if(tb.has(g)) common++; });
-  let score = queryBigrams.size ? common / queryBigrams.size : 0;
+  queryNgrams.forEach(g => { if(tn.has(g)) common++; });
+  let score = queryNgrams.size ? common / queryNgrams.size : 0;
 
   const intent = cleanQueryIntent(query);
   const firstLines = normText.split("\n").slice(0, 4).join("\n");
@@ -1731,14 +1779,14 @@ function scorePage(query, queryBigrams, pageText){
 function retrieveContext(query, role, topN=5, maxChars=7000){
   const [lo, hi] = ROLE_RANGES[role];
   const pool = CORPUS.filter(c => c.page !== null && c.page >= lo && c.page <= hi);
-  const qb = bigrams(query);
+  const qn = ngrams(query, 3);
 
   const scored = pool.map(c => ({
     page: c.page,
     text: c.text,
-    score: scorePage(query, qb, c.text)
+    score: scorePage(query, qn, c.text)
   }))
-  .filter(c => c.score > 0.15)
+  .filter(c => c.score > 0.30)
   .sort((a,b) => b.score - a.score)
   .slice(0, topN);
 
@@ -1757,9 +1805,16 @@ function retrieveContext(query, role, topN=5, maxChars=7000){
    ========================================================= */
 function generateAnswer(query, context, role){
   if(isQueryOutOfScope(query)){
-    if(query.includes("ค่ารักษา") || query.includes("เงินเดือน") || query.includes("สวัสดิการ") || query.includes("ลางาน")){
+    if(query.includes("ค่ารักษา") || query.includes("เงินเดือน") || query.includes("สวัสดิการ") || query.includes("ลางาน") || query.includes("วันลา") || query.includes("ยืมเงิน")){
       return {
-        answer: "เรื่อง **การเบิกเงินค่ารักษาพยาบาล / เงินเดือน / สวัสดิการ หรือวันลา** อยู่นอกเหนือขอบเขตของระบบคำของบประมาณ (MIS Budget) ครับ\n\n💡 **คำแนะนำ:** กรุณาติดต่อกองคลัง หรืองานสวัสดิการบุคลากร กองบริหารงานบุคคล ของมหาวิทยาลัยราชภัฏเลย ครับ",
+        answer: "เรื่อง **การเบิกเงินค่ารักษาพยาบาล / เงินเดือน / สวัสดิการ วันลา หรือเงินยืมทดลองราชการ** อยู่นอกเหนือขอบเขตของระบบคำของบประมาณ (MIS Budget) ครับ\n\n💡 **คำแนะนำ:** กรุณาติดต่อกองคลัง หรืองานสวัสดิการบุคลากร กองบริหารงานบุคคล ของมหาวิทยาลัยราชภัฏเลย ครับ",
+        sources: [],
+        illustrationPage: null
+      };
+    }
+    if(query.includes("ลงทะเบียน") || query.includes("เกรด") || query.includes("ตารางเรียน") || query.includes("ตารางสอน") || query.includes("ค่าเทอม") || query.includes("กยศ") || query.includes("หอพัก") || query.includes("สมัครเรียน")){
+      return {
+        answer: "เรื่อง **งานทะเบียนนักศึกษา / ผลการเรียน / ค่าธรรมเนียมการศึกษา / กยศ. หรือการรับสมัครนักศึกษา** อยู่นอกเหนือขอบเขตของระบบคำของบประมาณ (MIS Budget) ครับ\n\n💡 **คำแนะนำ:** กรุณาติดต่อสำนักส่งเสริมวิชาการและงานทะเบียน หรือกองพัฒนานักศึกษา มหาวิทยาลัยราชภัฏเลย ครับ",
         sources: [],
         illustrationPage: null
       };
