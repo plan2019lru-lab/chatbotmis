@@ -1556,19 +1556,26 @@ function addBot(rawText, meta){
     const zoomBtn = document.createElement("button");
     zoomBtn.className = "btn-zoom-img";
     zoomBtn.innerHTML = `<span>🔍 ขยายเต็มจอ</span>`;
-    zoomBtn.onclick = () => openImageModal(`manual_images/page_${meta.illustrationPage}.webp`, `คู่มือหน้า ${meta.illustrationPage}`);
+    zoomBtn.onclick = () => openImageModal(getManualImgUrl(meta.illustrationPage), `คู่มือหน้า ${meta.illustrationPage}`);
     illHeader.appendChild(zoomBtn);
     illCard.appendChild(illHeader);
 
     const imgWrap = document.createElement("div");
     imgWrap.className = "illustration-img-wrap";
     imgWrap.title = "คลิกเพื่อดูภาพขยายเต็มจอ";
-    imgWrap.onclick = () => openImageModal(`manual_images/page_${meta.illustrationPage}.webp`, `คู่มือหน้า ${meta.illustrationPage}`);
+    imgWrap.onclick = () => openImageModal(getManualImgUrl(meta.illustrationPage), `คู่มือหน้า ${meta.illustrationPage}`);
     
     const img = document.createElement("img");
-    img.src = `manual_images/page_${meta.illustrationPage}.webp`;
+    img.src = getManualImgUrl(meta.illustrationPage);
     img.alt = `ภาพคู่มือหน้า ${meta.illustrationPage}`;
-    img.onerror = () => { illCard.style.display = "none"; };
+    img.onerror = () => {
+      if (!img.dataset.fallback) {
+        img.dataset.fallback = "1";
+        img.src = `${GITHUB_RAW_IMG_BASE}page_${meta.illustrationPage}.webp`;
+      } else {
+        illCard.style.display = "none";
+      }
+    };
     imgWrap.appendChild(img);
 
     const hint = document.createElement("div");
@@ -1911,11 +1918,16 @@ function openPagePreview(pageNumber){
   drawerPageIndicator.textContent = `หน้า ${pNum} จาก 120`;
   
   // Set image with graceful fallback to text
-  drawerPageImg.src = `manual_images/page_${pNum}.webp`;
+  drawerPageImg.src = getManualImgUrl(pNum);
   drawerPageImg.onerror = () => {
-    switchDrawerTab("text");
+    if (!drawerPageImg.dataset.fallback) {
+      drawerPageImg.dataset.fallback = "1";
+      drawerPageImg.src = `${GITHUB_RAW_IMG_BASE}page_${pNum}.webp`;
+    } else {
+      switchDrawerTab("text");
+    }
   };
-  drawerPageImg.onclick = () => openImageModal(`manual_images/page_${pNum}.webp`, `คู่มือหน้า ${pNum}`);
+  drawerPageImg.onclick = () => openImageModal(getManualImgUrl(pNum), `คู่มือหน้า ${pNum}`);
   
   // Set text
   drawerTextView.textContent = pageData ? (pageData.text || "(ไม่มีข้อความในหน้านี้)") : "(ไม่พบข้อมูลข้อความ)";
